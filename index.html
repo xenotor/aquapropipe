@@ -10,29 +10,36 @@
 <body>
   <header>
     <div class="container">
-      <h1>AquaPro Pipe</h1>
-      <p>Call us now: (404) 555-1234 | Open 24/7</p>
+      <h1>AquaPro Pipe Plumbing</h1>
+      <p>(404) 468-0774 (404) 447-4170 | Monday - Sathurday 8am 6pm</p>
     </div>
   </header>
 
   <nav class="navbar">
-    <ul class="container">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Reviews</a></li>
-      <li><a href="#">Request Service</a></li>
-      <li><a href="#">About Us</a></li>
-    </ul>
+    <div class="container nav-container">
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#coverage">Service Areas</a></li>
+        <li><a href="#contact">Request Service</a></li>
+      </ul>
+    </div>
   </nav>
 
   <main class="container">
-    <section class="hero">
+    <section id="home" class="hero">
       <h2>Professional Plumbing Services in Georgia</h2>
-      <p>Fast, affordable, and available 24/7. Serving Woodstock and surrounding areas.</p>
+      <p>Fast, affordable, and available. Serving Woodstock and surrounding areas.</p>
       <a href="#" class="cta-button">Request Service</a>
     </section>
 
-    <section class="services">
+    <section id="services" class="services">
       <h3>Our Services</h3>
       <div class="service-cards">
         <div class="service-card" style="background-image: url('img/emergency-plumbing.jpg')">
@@ -77,6 +84,12 @@
             <p>Installation, maintenance and repair of water heaters</p>
           </div>
         </div>
+        <div class="service-card" style="background-image: url('img/tankless-water-heater.jpg')">
+          <div class="card-content">
+            <h4><i class="fas fa-burn"></i> Tankless Water Heaters</h4>
+            <p>Energy-efficient tankless water heater installation and repair</p>
+          </div>
+        </div>
         <div class="service-card" style="background-image: url('img/camera-inspection.jpg')">
           <div class="card-content">
             <h4><i class="fas fa-camera"></i> Sewer Camera Inspections</h4>
@@ -86,24 +99,24 @@
       </div>
     </section>
 
-    <section class="about">
+    <section id="about" class="about">
       <h3>Why Choose AquaPro Pipe?</h3>
       <ul>
         <li>Certified and insured professionals</li>
         <li>Over 8 years of experience</li>
         <li>Free estimates and transparent pricing</li>
-        <li>Emergency services available 24/7</li>
+        <li>Emergency services available  Monday - Sathurday 8am 6pm</li>
       </ul>
     </section>
 
-    <section class="coverage">
+    <section id="coverage" class="coverage">
       <h3>Service Areas</h3>
       <p>We proudly serve Woodstock, Marietta, Canton, Roswell, Alpharetta, and more.</p>
     </section>
 
-    <section class="contact">
+    <section id="contact" class="contact">
       <h3>Get a Free Estimate</h3>
-      <p>Call us at (404) 555-1234 or <a href="#">request service online</a>.</p>
+      <p>Call us at (404) 468-0774 (404) 447-4170 or <a href="#">request service online</a>.</p>
     </section>
   </main>
 
@@ -113,5 +126,42 @@
     </div>
   </footer>
 
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          // Add offset for fixed navbar
+          const navbarHeight = document.querySelector('.navbar').offsetHeight;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu when a link is clicked
+          if (document.querySelector('.nav-menu').classList.contains('active')) {
+            document.querySelector('.nav-menu').classList.remove('active');
+            document.querySelector('.menu-toggle').classList.remove('active');
+          }
+        }
+      });
+    });
+    
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>

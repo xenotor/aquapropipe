@@ -17,6 +17,11 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px; /* Adjust based on navbar height */
+}
+
 body {
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
@@ -66,11 +71,21 @@ header p {
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.navbar ul {
+.nav-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .navbar li {
@@ -82,10 +97,44 @@ header p {
   font-weight: 600;
   padding: 0.75rem 1rem;
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .navbar a:hover {
   color: var(--light-color);
+}
+
+.navbar a:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: var(--light-color);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover:after,
+.navbar a.active:after {
+  width: 70%;
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.menu-toggle .bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--white);
+  margin: 5px auto;
+  transition: all 0.3s ease;
+  display: block;
 }
 
 /* Hero Section */
@@ -479,6 +528,60 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  .nav-container {
+    position: relative;
+  }
+  
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: var(--secondary-color);
+    width: 100%;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    max-height: 0;
+  }
+  
+  .nav-menu.active {
+    max-height: 300px;
+  }
+  
+  .navbar li {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+  
+  .navbar a {
+    padding: 0.5rem 0;
+    display: block;
+    width: 100%;
+  }
+  
+  .navbar a:after {
+    display: none;
+  }
+  
   .navbar ul {
     flex-direction: column;
     align-items: center;
