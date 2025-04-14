@@ -58,11 +58,28 @@ header {
 
 header h1 {
   font-size: 2rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
 }
 
-header p {
-  font-size: 1.1rem;
+.header-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.phone-numbers a {
+  color: var(--white);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.phone-numbers a:hover {
+  color: var(--light-color);
+}
+
+.open-hours {
+  margin-left: 0.5rem;
 }
 
 /* Navigation */
@@ -139,7 +156,7 @@ header p {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(rgba(0, 91, 150, 0.8), rgba(3, 57, 108, 0.8)), url('../img/hero-bg.jpg');
+  background: linear-gradient(rgba(0, 91, 150, 0.6), rgba(3, 57, 108, 0.8)), url('../img/hero-bg.jpg');
   background-size: cover;
   background-position: center;
   color: var(--white);
@@ -148,6 +165,55 @@ header p {
   margin-bottom: 2rem;
   border-radius: 5px;
   box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(0, 91, 150, 0.3);
+  border-radius: 40%;
+  transform-origin: 50% 50%;
+  animation: water-wave 12s linear infinite;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(3, 57, 108, 0.4);
+  border-radius: 43%;
+  transform-origin: 50% 50%;
+  animation: water-wave 15s linear infinite reverse;
+  opacity: 0.8;
+  z-index: 0;
+}
+
+@keyframes water-wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hero h2, .hero p, .hero a {
+  position: relative;
+  z-index: 1;
 }
 
 .hero h2 {
@@ -290,6 +356,52 @@ header p {
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
 }
 
+.about-content {
+  max-width: 900px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+.about-content p {
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+  color: var(--dark);
+  font-size: 1.05rem;
+}
+
+.about-content p:last-child {
+  margin-bottom: 0;
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.about-card-text {
+  background-color: var(--white);
+  border-radius: 5px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: all 0.3s ease;
+  border-top: 3px solid var(--primary-color);
+}
+
+.about-card-text:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+}
+
+.about-card-text p {
+  line-height: 1.8;
+  margin: 0;
+  color: var(--dark);
+  font-size: 1.05rem;
+}
+
 /* Coverage Section */
 .coverage {
   margin-bottom: 2rem;
@@ -420,6 +532,40 @@ header p {
   padding-bottom: 0.5rem;
 }
 
+.contact h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background-color: var(--accent-color);
+}
+
+.contact-text {
+  text-align: center;
+  max-width: 700px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+.contact-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.contact-text a {
+  color: var(--primary-color);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.contact-text a:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
 .contact-container {
   background-size: cover;
   background-position: center;
@@ -478,13 +624,37 @@ footer {
 
 .footer-info h4,
 .footer-links h4,
-.footer-social h4 {
+.footer-hours h4 {
   font-size: 1.3rem;
   margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.footer-info h4::after,
+.footer-links h4::after,
+.footer-hours h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: var(--accent-color);
 }
 
 .footer-info p {
   margin-bottom: 0.5rem;
+}
+
+.footer-info a {
+  color: var(--light-color);
+  transition: color 0.3s ease;
+}
+
+.footer-info a:hover {
+  color: var(--white);
+  text-decoration: underline;
 }
 
 .footer-links ul li {
@@ -498,6 +668,10 @@ footer {
 
 .footer-links ul li a:hover {
   color: var(--white);
+}
+
+.footer-hours p {
+  margin-bottom: 0.5rem;
 }
 
 .social-icons {
@@ -599,6 +773,16 @@ footer {
     font-size: 2rem;
   }
   
+  .hero::before {
+    opacity: 0.8;
+    animation: water-wave 8s linear infinite;
+  }
+  
+  .hero::after {
+    opacity: 0.9;
+    animation: water-wave 10s linear infinite reverse;
+  }
+  
   .footer-content {
     grid-template-columns: 1fr;
     text-align: center;
@@ -606,5 +790,25 @@ footer {
   
   .social-icons {
     justify-content: center;
+  }
+
+  .header-contact {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .phone-numbers, .open-hours {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .phone-numbers, .open-hours {
+    font-size: 0.9rem;
   }
 }
